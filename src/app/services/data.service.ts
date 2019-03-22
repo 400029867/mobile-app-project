@@ -7,7 +7,7 @@ export class DataService {
 
   constructor() { }
 
-  hoi() {
-    return 'hoi';
+  GetWelcomeMessage() {
+    return 'Welcom to our amazing app';
   }
 }

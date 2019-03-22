@@ -11,6 +11,6 @@ export class HomePage {
   constructor(
     private data: DataService
   ) {
-    console.log(data.hoi());
+    console.log(data.GetWelcomeMessage());
   }
 }
