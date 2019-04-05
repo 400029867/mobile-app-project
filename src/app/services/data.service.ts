@@ -9,21 +9,21 @@ import { firestore } from 'firebase';
 export class DataService {
 
   constructor(
-    private db: AngularFirestore
+    private firestore: AngularFirestore
   ) { }
 
-  GetStudenten(cb?: (studenten: firestore.QuerySnapshot) => void) {
-    this.db.collection('student').get().subscribe((output) => {
-      if (cb) {
-        cb(output);
+  GetStudenten(callback?: (studenten: firestore.QuerySnapshot) => void) {
+    this.firestore.collection('student').get().subscribe((studenten) => {
+      if (callback) {
+        callback(studenten);
       }
     });
   }
 
-  GetKlassen(cb?: (klassen: firestore.QuerySnapshot) => void) {
-    this.db.collection('klas').get().subscribe(output => {
-      if (cb) {
-        cb(output);
+  GetKlassen(callback?: (klassen: firestore.QuerySnapshot) => void) {
+    this.firestore.collection('klas').get().subscribe(klassen => {
+      if (callback) {
+        callback(klassen);
       }
     });
   }
