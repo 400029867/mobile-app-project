@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { firestore } from 'firebase';
+import { firestore as Firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class DataService {
     private firestore: AngularFirestore
   ) { }
 
-  GetStudenten(callback?: (studenten: firestore.QuerySnapshot) => void) {
+  GetStudenten(callback?: (studenten: Firestore.QuerySnapshot) => void) {
     this.firestore.collection('student').get().subscribe((studenten) => {
       if (callback) {
         callback(studenten);
@@ -20,7 +20,7 @@ export class DataService {
     });
   }
 
-  GetKlassen(callback?: (klassen: firestore.QuerySnapshot) => void) {
+  GetKlassen(callback?: (klassen: Firestore.QuerySnapshot) => void) {
     this.firestore.collection('klas').get().subscribe(klassen => {
       if (callback) {
         callback(klassen);
