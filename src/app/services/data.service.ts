@@ -5,7 +5,7 @@ import { firestore as Firestore, firestore } from 'firebase';
 import { calcBindingFlags } from '@angular/core/src/view/util';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
   constructor(private firestore: AngularFirestore) {}
@@ -34,7 +34,7 @@ export class DataService {
 
   GetStudentenInKlas(
     id: string,
-    callback?: (studenten: firestore.QuerySnapshot[]) => void
+    callback?: (studenten: firestore.QuerySnapshot[]) => void,
   ) {
     this.GetStudenten(_studenten => {
       var studenten = [];
