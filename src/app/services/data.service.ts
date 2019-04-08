@@ -14,7 +14,7 @@ export class DataService {
     this.firestore
       .collection('student')
       .get()
-      .subscribe(studenten => {
+      .subscribe((studenten) => {
         if (callback) {
           callback(studenten);
         }
@@ -25,7 +25,7 @@ export class DataService {
     this.firestore
       .collection('klas')
       .get()
-      .subscribe(klassen => {
+      .subscribe((klassen) => {
         if (callback) {
           callback(klassen);
         }
@@ -34,18 +34,20 @@ export class DataService {
 
   GetStudentenInKlas(
     id: string,
-    callback?: (studenten: firestore.QuerySnapshot[]) => void,
+    callback?: (studenten: firestore.QuerySnapshot) => void,
   ) {
-    this.GetStudenten(_studenten => {
-      var studenten = [];
-      _studenten.docs.forEach(student => {
-        if (student.data().klas === id) {
-          studenten.push(student);
-        }
+    this.firestore
+      .collection('student')
+      .get()
+      .subscribe((output) => {
+        output.query
+          .where('klas', '==', id)
+          .get()
+          .then((studenten) => {
+            if (callback) {
+              callback(studenten);
+            }
+          });
       });
-      if (callback) {
-        callback(studenten);
-      }
-    });
   }
 }
