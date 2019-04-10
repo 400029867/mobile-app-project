@@ -7,5 +7,14 @@ import { DataService } from '../services/data.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor(private data: DataService) {}
+  klassen: any = null;
+
+  public dataService: DataService;
+
+  constructor(public data: DataService) {
+    this.data.GetKlassen().subscribe((output) => {
+      this.klassen = output;
+      console.log(output);
+    });
+  }
 }
