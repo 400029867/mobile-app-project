@@ -21,15 +21,8 @@ export class DataService {
       });
   }
 
-  GetKlassen(callback?: (klassen: Firestore.QuerySnapshot) => void) {
-    this.firestore
-      .collection('klas')
-      .get()
-      .subscribe((klassen) => {
-        if (callback) {
-          callback(klassen);
-        }
-      });
+  GetKlassen() {
+    return this.firestore.collection('klas').valueChanges();
   }
 
   GetStudentenInKlas(
