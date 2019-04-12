@@ -27,4 +27,13 @@
       Groepen maken
     </button>
   </div>
+
+  <div class="groepen">
+    <div *ngFor="let group of groups">
+      <div *ngFor="let person of group">
+        {{ person.data().naam }}
+      </div>
+      <hr />
+    </div>
+  </div>
 </ion-content>

@@ -12,6 +12,7 @@ import { UpperPipe } from './pipes/upper.pipe';
 import { environment } from 'src/environments/environment';
 
 import { FormsModule } from '@angular/forms';
+import { Shake } from '@ionic-native/shake/ngx';
 
 // angular firebase
 import { AngularFireModule } from '@angular/fire';
@@ -40,6 +41,7 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
   providers: [
     StatusBar,
     SplashScreen,
+    Shake,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
