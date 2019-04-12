@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content padding>
   <p>Klas:</p>
   <div class="form-group">
     <select
@@ -29,8 +29,15 @@
   </div>
 
   <div class="groepen">
-    <div class="card" *ngFor="let group of groups">
-      <div class="card-body">
+    <div
+      class="card"
+      *ngFor="let group of groups; let i = index"
+      [attr.data-index]="i"
+    >
+      <div class="title">
+        <p class="text-center">Groep: {{ i + 1 }}</p>
+      </div>
+      <div class="card-body container">
         <p *ngFor="let person of group">{{ person.data().naam }}</p>
       </div>
     </div>
