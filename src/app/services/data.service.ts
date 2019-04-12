@@ -37,6 +37,7 @@ export class DataService {
           .where('klas', '==', id)
           .get()
           .then((studenten) => {
+            console.log(studenten);
             if (callback) {
               callback(studenten);
             }
