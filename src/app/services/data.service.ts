@@ -22,7 +22,7 @@ export class DataService {
   }
 
   GetKlassen() {
-    return this.firestore.collection('klas').valueChanges();
+    return this.firestore.collection('klas').get();
   }
 
   GetStudentenInKlas(
