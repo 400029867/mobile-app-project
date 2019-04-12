@@ -29,11 +29,10 @@
   </div>
 
   <div class="groepen">
-    <div *ngFor="let group of groups">
-      <div *ngFor="let person of group">
-        {{ person.data().naam }}
+    <div class="card" *ngFor="let group of groups">
+      <div class="card-body">
+        <p *ngFor="let person of group">{{ person.data().naam }}</p>
       </div>
-      <hr />
     </div>
   </div>
 </ion-content>
