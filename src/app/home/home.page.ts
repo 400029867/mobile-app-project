@@ -14,6 +14,8 @@ export class HomePage {
     group_size: 2,
   };
 
+  groups: firebase.firestore.QueryDocumentSnapshot[] = [];
+
   public dataService: DataService;
 
   constructor(public data: DataService) {
@@ -27,10 +29,71 @@ export class HomePage {
 
   MaakGroep() {
     this.data.GetStudentenInKlas(this.selected.klas, (studenten) => {
-      const { docs } = studenten;
-      docs.forEach((doc) => {
-        console.log(doc);
+      this.GenerateGroups(this.selected.group_size, studenten, (groups) => {
+        console.log(groups);
+        this.groups = groups;
       });
     });
+  }
+
+  GenerateGroups(
+    groupSize: number,
+    studenten: firebase.firestore.QueryDocumentSnapshot[],
+    callback?: (group: any) => void,
+  ) {
+    let remainder = studenten.length % groupSize;
+    let groups = [];
+    studenten = this.shuffle(studenten);
+
+    if (remainder == 0) {
+      for (var i = 0; i < studenten.length / groupSize; i++) {
+        groups.push(studenten.slice(i * groupSize, i * groupSize + groupSize));
+      }
+    } else if (remainder == groupSize - 1) {
+      for (var i = 0; i < (studenten.length + 1) / groupSize; i++) {
+        if (i == (studenten.length + 1) / groupSize - 1) {
+          groups.push(
+            studenten.slice(i * groupSize, i * groupSize + groupSize - 1),
+          );
+        } else {
+          groups.push(
+            studenten.slice(i * groupSize, i * groupSize + groupSize),
+          );
+        }
+      }
+    } else {
+      let group_count = (studenten.length - remainder) / groupSize;
+      for (var i = 0; i < group_count; i++) {
+        groups.push(studenten.slice(i * groupSize, i * groupSize + groupSize));
+      }
+      var remaining_students_index = group_count * groupSize;
+      var index = 0;
+      for (
+        var i = remaining_students_index;
+        i < remaining_students_index + remainder;
+        i++
+      ) {
+        groups[index].push(studenten[i]);
+        index++;
+        if (index == group_count) {
+          index = 0;
+        }
+      }
+    }
+
+    if (callback) {
+      callback(groups);
+    }
+  }
+
+  shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+    }
+    return a;
   }
 }
