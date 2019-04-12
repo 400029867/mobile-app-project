@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { UpperPipe } from './pipes/upper.pipe';
 import { environment } from 'src/environments/environment';
 
+import { FormsModule } from '@angular/forms';
+
 // angular firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -28,6 +30,7 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
   entryComponents: [],
   imports: [
     BrowserModule,
+    FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
