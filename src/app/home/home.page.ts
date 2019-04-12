@@ -25,6 +25,10 @@ export class HomePage {
         this.selected.klas = this.klassen[0].data().naam;
       }
     });
+
+    this.data.GetShake().subscribe(() => {
+      this.groups = [];
+    });
   }
 
   MaakGroep() {

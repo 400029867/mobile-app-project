@@ -46,6 +46,6 @@ export class DataService {
   }
 
   GetShake() {
-    // const obs = new Observable(observer)
+    return this.shake.startWatch();
   }
 }
