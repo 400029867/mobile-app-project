@@ -2,3 +2,22 @@
   width: 100%;
   margin-top: 15px;
 }
+.card {
+  border-color: black !important;
+  .card-body {
+    padding-top: 0;
+    p {
+      margin: 0;
+      width: 100%;
+      padding-top: 15px;
+      border-bottom: black solid 1px;
+    }
+  }
+  .title {
+    p {
+      padding: 15px 0;
+      border-bottom: black solid 1px;
+    }
+  }
+  margin-bottom: 15px;
+}
